@@ -36,9 +36,7 @@ const Users = () => (
   </div>
 );
 
-const Note = ({ notes }) => {
-  const id = useParams().id;
-  const note = notes.find((n) => n.id === Number(id));
+const Note = ({ note }) => {
   return (
     <div>
       <h2>{note.content}</h2>
@@ -102,11 +100,12 @@ const App = () => {
   const login = (user) => {
     setUser(user);
   };
+
   const padding = {
     padding: 5,
   };
   return (
-    <Router>
+    <div>
       <div>
         <Link style={padding} to="/">
           home
@@ -142,7 +141,7 @@ const App = () => {
       <div>
         <i>Note app, Department of Computer Science 2022</i>
       </div>
-    </Router>
+    </div>
   );
 };
 
