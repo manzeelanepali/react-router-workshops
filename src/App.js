@@ -3,7 +3,7 @@ import {
   Routes,
   Route,
   Link,
-  useParams,
+  useMatch,
   useNavigate,
   Navigate,
 } from "react-router-dom";
@@ -74,6 +74,8 @@ const Login = (props) => {
 };
 
 const App = () => {
+  const match = useMatch("/notes/:id");
+
   const [notes, setNotes] = useState([
     {
       id: 1,
@@ -94,6 +96,10 @@ const App = () => {
       user: "Arto Hellas",
     },
   ]);
+
+  const note = match
+    ? notes.find((note) => note.id === Number(match.params.id))
+    : null;
 
   const [user, setUser] = useState(null);
 
@@ -126,7 +132,7 @@ const App = () => {
       </div>
 
       <Routes>
-        <Route path="/notes/:id" element={<Note notes={notes} />} />
+        <Route path="/notes/:id" element={<Note notes={note} />} />
         <Route path="/notes" element={<Notes notes={notes} />} />
         {/* <Route path="/users" element={<Users />} /> */}
 
