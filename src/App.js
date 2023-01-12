@@ -1,6 +1,6 @@
 import {
   BrowserRouter as Router,
-  Routes, Route, Link
+  Routes, Route, Link, useParams
 } from "react-router-dom"
  import { useState } from "react"
 
@@ -25,6 +25,19 @@ const Notes = ({ notes }) => (
 const Users = () => (
   <div> <h2>Users</h2> </div>
 )
+
+
+const Note = ({ notes }) => {
+  const id = useParams().id
+  const note = notes.find(n => n.id === Number(id)) 
+  return (
+    <div>
+      <h2>{note.content}</h2>
+      <div>{note.user}</div>
+      <div><strong>{note.important ? 'important' : ''}</strong></div>
+    </div>
+  )
+}
 
 
 const App =()=>{
@@ -66,6 +79,7 @@ const App =()=>{
     </div>
 
     <Routes>
+    <Route path="/notes/:id" element={<Note notes={notes} />} />
         <Route path="/notes" element={<Notes notes={notes}/>} />
         <Route path="/users" element={<Users />} />
         <Route path="/" element={<Home />} />
