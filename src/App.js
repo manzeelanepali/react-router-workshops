@@ -111,41 +111,43 @@ const App = () => {
     padding: 5,
   };
   return (
-    <div>
+    <div className="container">
       <div>
-        <Link style={padding} to="/">
-          home
-        </Link>
-        <Link style={padding} to="/notes">
-          notes
-        </Link>
-        <Link style={padding} to="/users">
-          users
-        </Link>
-        {user ? (
-          <em>{user} logged in</em>
-        ) : (
-          <Link style={padding} to="/login">
-            login
+        <div>
+          <Link style={padding} to="/">
+            home
           </Link>
-        )}
-      </div>
+          <Link style={padding} to="/notes">
+            notes
+          </Link>
+          <Link style={padding} to="/users">
+            users
+          </Link>
+          {user ? (
+            <em>{user} logged in</em>
+          ) : (
+            <Link style={padding} to="/login">
+              login
+            </Link>
+          )}
+        </div>
 
-      <Routes>
-        <Route path="/notes/:id" element={<Note notes={note} />} />
-        <Route path="/notes" element={<Notes notes={notes} />} />
-        {/* <Route path="/users" element={<Users />} /> */}
+        <Routes>
+          <Route path="/notes/:id" element={<Note notes={note} />} />
+          <Route path="/notes" element={<Notes notes={notes} />} />
+          {/* <Route path="/users" element={<Users />} /> */}
 
-        <Route
-          path="/users"
-          element={user ? <Users /> : <Navigate replace to="/login" />}
-        />
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login onLogin={login} />} />
-      </Routes>
+          <Route
+            path="/users"
+            element={user ? <Users /> : <Navigate replace to="/login" />}
+          />
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login onLogin={login} />} />
+        </Routes>
 
-      <div>
-        <i>Note app, Department of Computer Science 2022</i>
+        <div>
+          <i>Note app, Department of Computer Science 2022</i>
+        </div>
       </div>
     </div>
   );
