@@ -20,6 +20,8 @@ import {
   TextField,
   Button,
   Alert,
+  AppBar,
+  Toolbar,
 } from "@mui/material";
 const Home = () => (
   <div>
@@ -131,25 +133,27 @@ const App = () => {
   return (
     <Container>
       {message && <Alert severity="success">{message}</Alert>}
+      <AppBar position="static">
+        <Toolbar>
+          <Button color="inherit" component={Link} to="/">
+            home
+          </Button>
+          <Button color="inherit" component={Link} to="/notes">
+            notes
+          </Button>
+          <Button color="inherit" component={Link} to="/users">
+            users
+          </Button>
+          {user ? (
+            <em>{user} logged in</em>
+          ) : (
+            <Button color="inherit" component={Link} to="/login">
+              login
+            </Button>
+          )}
+        </Toolbar>
+      </AppBar>
 
-      <div>
-        <Link style={padding} to="/">
-          home
-        </Link>
-        <Link style={padding} to="/notes">
-          notes
-        </Link>
-        <Link style={padding} to="/users">
-          users
-        </Link>
-        {user ? (
-          <em>{user} logged in</em>
-        ) : (
-          <Link style={padding} to="/login">
-            login
-          </Link>
-        )}
-      </div>
       <Routes>
         <Route path="/notes/:id" element={<Note notes={note} />} />
         <Route path="/notes" element={<Notes notes={notes} />} />
