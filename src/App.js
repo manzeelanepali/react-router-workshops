@@ -19,6 +19,7 @@ import {
   Paper,
   TextField,
   Button,
+  Alert,
 } from "@mui/material";
 const Home = () => (
   <div>
@@ -115,14 +116,22 @@ const App = () => {
     ? notes.find((note) => note.id === Number(match.params.id))
     : null;
   const [user, setUser] = useState(null);
+  const [message, setMessage] = useState(null);
+
   const login = (user) => {
     setUser(user);
+    setMessage(`welcome ${user}`);
+    setTimeout(() => {
+      setMessage(null);
+    }, 10000);
   };
   const padding = {
     padding: 5,
   };
   return (
     <Container>
+      {message && <Alert severity="success">{message}</Alert>}
+
       <div>
         <Link style={padding} to="/">
           home
